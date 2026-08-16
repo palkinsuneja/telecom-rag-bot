@@ -55,7 +55,7 @@ Answer:"""
     qa_chain = RetrievalQA.from_chain_type(
         llm=llm,
         chain_type="stuff",
-        retriever=vectordb.as_retriever(search_kwargs={"k": 5}),
+        retriever=vectordb.as_retriever(search_kwargs={"k": 8}),
         chain_type_kwargs={"prompt": PROMPT},
         return_source_documents=True
     )

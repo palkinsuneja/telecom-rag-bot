@@ -55,9 +55,11 @@ else:
 print("Vector store ready!")
 
 prompt_template = """You are an expert assistant on Telecom 3GPP standards documentation.
-Answer the question using ONLY the context provided below.
-If the answer is not present in the context, say "This information is not available in the provided 3GPP documentation." 
-Do NOT make up any information.
+Answer the question using ONLY the information explicitly present in the context below.
+Do NOT use any external knowledge, make assumptions, or add any information beyond what is in the context.
+Do NOT say "However" or add extra context after saying information is not available.
+If the answer is not explicitly present in the context, respond with exactly this sentence and nothing else:
+"This information is not available in the provided 3GPP documentation."
 
 Context: {context}
 
@@ -73,7 +75,7 @@ PROMPT = PromptTemplate(
 # Groq LLM
 llm = ChatGroq(
     model="llama-3.3-70b-versatile",
-    temperature=0,          # 0 = maximum factual, zero creativity — hallucination minimum!
+    temperature=0,          # 0 = maximum factual, zero creativity - hallucination minimum!
 )
 
 # RetrievalQA chain
@@ -81,7 +83,7 @@ qa_chain = RetrievalQA.from_chain_type(
     llm=llm,
     chain_type="stuff",
     retriever=vectordb.as_retriever(
-        search_kwargs={"k": 5}  # WhatsApp mein k=3 tha, technical docs mein 5 better hai
+        search_kwargs={"k": 8}  
     ),
     chain_type_kwargs={"prompt": PROMPT},
     return_source_documents=True
@@ -94,7 +96,7 @@ question = input("Enter your question: ")
 result = qa_chain.invoke({"query": question})
 print("\nAnswer:", result["result"])
 
-# Sources dikhao
+
 print("\nSources used:")
 for i, doc in enumerate(result["source_documents"], 1):
     print(f"{i}. {doc.page_content[:200]}...")
