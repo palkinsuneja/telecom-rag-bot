@@ -34,6 +34,20 @@ This is achieved through:
 | Document Loader | Docx2txtLoader (for .docx 3GPP specs) |
 | UI | Streamlit |
 
+## 📚 Knowledge Base
+
+This chatbot is trained on the following 3GPP 5G standards documents:
+
+| Document | Title |
+|----------|-------|
+| TS 23.501 | System Architecture for the 5G System |
+| TS 23.502 | Procedures for the 5G System |
+| TS 21.905 | Vocabulary for 3GPP Specifications |
+| TS 21.918 | (your 4th doc ka title dekh) |
+
+Questions outside the scope of these documents will return "This information is not available in the provided 3GPP documentation."
+
+
 ## ⚙️ How It Works
 
 3GPP .docx files → Load → Chunk (1000 tokens, 200 overlap) → Embed → ChromaDB
