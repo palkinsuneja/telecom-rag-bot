@@ -17,7 +17,7 @@ This is achieved through:
 
 ## 🚀 Features
 
-- **3GPP 5G Documentation Q&A** — query across 4 3GPP 5G standards documents simultaneously
+- **3GPP 5G Documentation Q&A** — query across 5 "3GPP 5G standards documents" simultaneously
 - **Near-zero hallucinations** — strict context-only answering with explicit fallback message
 - **Source transparency** — expandable "View Sources" section for every answer
 - **Persistent vector store** — ChromaDB stores embeddings so documents aren't re-processed on every run
@@ -43,7 +43,7 @@ This chatbot is trained on the following 3GPP 5G standards documents:
 | TS 23.501 | System Architecture for the 5G System |
 | TS 23.502 | Procedures for the 5G System |
 | TS 21.905 | Vocabulary for 3GPP Specifications |
-| TS 21.918 | (your 4th doc ka title dekh) |
+| TR 21.918 | Release 18 Description (summary of Rel-18 work items) |
 
 Questions outside the scope of these documents will return "This information is not available in the provided 3GPP documentation."
 
@@ -52,7 +52,7 @@ Questions outside the scope of these documents will return "This information is 
 
 3GPP .docx files → Load → Chunk (1000 tokens, 200 overlap) → Embed → ChromaDB
 ↓
-User Query → Embed Query → Retrieve Top-5 Similar Chunks → Groq LLM → Answer + Sources
+User Query → Embed Query → Retrieve Top-8 Similar Chunks → Groq LLM → Answer + Sources
 
 
 **Why chunk_size=1000 and overlap=200?**
